@@ -1,6 +1,6 @@
 ﻿function mapString(str) {
-    var i = str.length;
-    var mappedStr = "";
+    let i = str.length;
+    let mappedStr = "";
     while (i--) {
         mappedStr = mappedStr + mapCharecter(str.charAt(i));
     }
@@ -9,20 +9,10 @@
 
 function reverseString(str) {
     if (str.length > 0) {
-        // Step 1. Use the split() method to return a new array
-        var splitString = str.split(""); // var splitString = "hello".split("");
-        // ["h", "e", "l", "l", "o"]
-
-        // Step 2. Use the reverse() method to reverse the new created array
-        var reverseArray = splitString.reverse(); // var reverseArray = ["h", "e", "l", "l", "o"].reverse();
-        // ["o", "l", "l", "e", "h"]
-
-        // Step 3. Use the join() method to join all elements of the array into a string
-        var joinArray = reverseArray.join(""); // var joinArray = ["o", "l", "l", "e", "h"].join("");
-        // "olleh"
-
-        //Step 4. Return the reversed string
-        return joinArray; // "olleh"
+        let splitString = str.split(""); 
+        let reverseArray = splitString.reverse(); 
+        let joinArray = reverseArray.join(""); 
+        return joinArray; 
     } 
     return "";
 }
@@ -57,9 +47,9 @@ function mapCharecter(ch) {
         case "z": return 'ז';
         case ",": return 'ת';
         case ".": return 'ץ';
-        case ";": return 'ף';
-        case " ": return ' ';
-
+        case ";": return 'ף';        
+        case "`": return ';';
+        
         case "א": return 't';
         case "ב": return 'c';
         case "ג": return 'd';
@@ -87,5 +77,8 @@ function mapCharecter(ch) {
         case "ץ": return '.';
         case "ם": return 'o';
         case "ן": return 'i';
+        case "\'": return 'w';
+
+        default: return ch.toString().toLowerCase();
     }
 }

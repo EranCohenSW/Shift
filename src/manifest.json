@@ -1,34 +1,37 @@
 {
   "manifest_version": 2,
-  "name": "Swap Input",
+  "name": "Shift",
   "version": "0.1.0",
-  "description": "This will enable you to swap the input you were typed instantly from english to hebrew and vice versa",
+  "description": "Swap your language-mistyped sentences from English to Hebrew and vice versa instantly",
   "icons": {
-    "128": "icon128.png",
-    "48": "icon48.png",
-    "16": "icon16.png"
+    "128": "img/icon/icon128.png",
+    "48": "img/icon/icon48.png",
+    "16": "img/icon/icon16.png"
   },
   "content_scripts": [
     {
       "matches": [ "<all_urls>" ],
-      "js": [ "jquery-3.3.1.min.js", "mapping.js", "cscript.js" ]
+      "js": [ "scripts/jquery-3.3.1.min.js", 
+              "scripts/mapping.js", 
+              "scripts/cscript.js" ],
+      "all_frames": true
     }
   ],
   "browser_action": {
-    "default_icon": "icon16.png",
+    "default_icon": "img/icon/icon16.png",
     "default_popup": "popup.html"
   },
 
   "options_page": "options.html",
 
   "background": {
-    "scripts": ["jquery-3.3.1.min.js","mapping.js"],
+    "scripts": ["scripts/background.js"],
     "persistent": false
   },
 
   "permissions": [
     "storage",
     "notifications",
-    "contextMenus"
+    "activeTab"
   ]
 }

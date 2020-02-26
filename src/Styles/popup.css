@@ -1,0 +1,58 @@
+body {
+    min-width:272px;
+    }
+    header{
+        display:flex;
+    }
+    header img{
+        margin-top:7px;
+    } 
+    header h2{
+        margin-left: 8px;
+        cursor:default;
+    }
+    section h4{
+        margin: 0;
+    }
+    section ul{
+        padding: 0;;
+        list-style-type: none;
+        font-size: small;
+    }
+    section ul hr{
+        margin-top: 4px;
+        margin-bottom: 0px;
+    }
+    section ul a{
+        color: var(--main-text-color);
+        text-decoration: none;
+    }
+    section ul a:hover{
+        color: blue;
+        margin-left:3px;
+    } 
+    section ul a:visited{
+        text-decoration: none;
+        }
+    section ul li img{
+        margin-bottom: -2px;
+    }
+    section ul li div div{
+        display: flex;
+    }
+    section ul li div div img:first{
+        margin-top: 3px;
+        margin-left:15px;
+    }
+    section ul li div div img:nth-child(2){
+        margin-top:10px;
+    }
+    section ul li div div label{
+        margin-left:4px;
+    }
+    #tutorialLink{
+        cursor: pointer;
+    }
+    footer{
+        cursor: default;
+    }
