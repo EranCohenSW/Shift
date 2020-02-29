@@ -93,7 +93,6 @@ function checkShiftSucceeded(langId,input,output){
 async function shiftSucceeded(){
 	const currentCount = await increaseCount();
 	if(currentCount == SuggestAt){
-		console.log("its now "+currentCount);
 		const rankNotification = {
 			type: 'basic',
 			iconUrl: 'img/icon/icon48.png',

@@ -56,9 +56,12 @@ function sendEmailReport(){
 function handleLikeItButtons(buttonIndex){
     switch(buttonIndex){
         case 0:
-            chrome.tabs.create({ url: "https://github.com/EranCohenSW" });
+            chrome.tabs.create({ url: "https://chrome.google.com/webstore/detail/shift/pdfkiaeohjkkcbgckkehnkcdjdnjifjm/reviews" });
             break;
-        case 1: break;
+        case 1:
+            chrome.tabs.create({ url: "https://chrome.google.com/webstore/detail/shift/pdfkiaeohjkkcbgckkehnkcdjdnjifjm" }); 
+        break;
         default: break;
     }
 }
+
