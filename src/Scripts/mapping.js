@@ -48,7 +48,6 @@ function mapCharecter(ch) {
         case ",": return 'ת';
         case ".": return 'ץ';
         case ";": return 'ף';        
-        case "`": return ';';
         
         case "א": return 't';
         case "ב": return 'c';
@@ -78,6 +77,7 @@ function mapCharecter(ch) {
         case "ם": return 'o';
         case "ן": return 'i';
         case "\'": return 'w';
+        case "/": return 'q';
 
         default: return ch.toString().toLowerCase();
     }

@@ -1,3 +1,6 @@
+const convertableChars = ['a','ש','b','נ','c','ב','d','ג','e','ק','f','כ','g','ע','h','י','i','ן','j','ח','k','ל',
+'l','ך','m','צ','n','מ','o','ם','p','פ','q','/','r','ר','s','ד','t','א','u','ו','v','ה',
+'w','\'','x','ס','y','ט','z','ז',',','ת','.','ץ',',','ף']
 const ValidTypes = ["text","textarea","email","search","tel","url"];
 const SuggestAt = 15;  
 let shiftLast = false;
@@ -24,7 +27,7 @@ $(window).keyup(async () => {
 				shifted = await updateUpperCases(shifted);
 				document.activeElement.value = document.activeElement.value.replace(source,shifted);
 				document.activeElement.setSelectionRange(selectionStart,selectionEnd);
-				if(checkShiftSucceeded(1,source,shifted)){
+				if(checkShiftSucceeded(source,shifted)){
 					shiftSucceeded()
 				}
 				else{
@@ -83,10 +86,10 @@ function increaseCount(){
 	})
 }
 
-function checkShiftSucceeded(langId,input,output){
+function checkShiftSucceeded(input,output){
 	let assert = true;
 	assert &= (output.length > 0);
-	assert &= (input != output);
+	assert &= ((input != output) || input.split("").every((ch)=> !convertableChars.includes(ch) ));
 	return assert;
 }
 
