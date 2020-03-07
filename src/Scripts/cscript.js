@@ -14,26 +14,49 @@ $(window).keydown(() => {
 })
 
 $(window).keyup(async () => {
-		const activeElementType = document.activeElement.type;		
-		if(shiftLast && ValidTypes.includes(activeElementType)){
-			let source = document.activeElement.value;
-			let selectionStart = document.activeElement.selectionStart;
-			let selectionEnd = document.activeElement.selectionEnd;
-			if(selectionStart != selectionEnd)
-				source = document.activeElement.value.slice(selectionStart,selectionEnd);
-			if(source){
-				source = await setUpUpperCase(source);
-				let shifted = reverseString(mapString(source));
-				shifted = await updateUpperCases(shifted);
-				document.activeElement.value = document.activeElement.value.replace(source,shifted);
-				document.activeElement.setSelectionRange(selectionStart,selectionEnd);
-				if(checkShiftSucceeded(source,shifted)){
-					shiftSucceeded()
-				}
-				else{
-					shiftFailed();
-				}
-			} 
+		if(shiftLast){
+			if(ValidTypes.includes(document.activeElement.type)){
+				let source = document.activeElement.value;
+				let selectionStart = document.activeElement.selectionStart;
+				let selectionEnd = document.activeElement.selectionEnd;
+				if(selectionStart != selectionEnd)
+					source = document.activeElement.value.slice(selectionStart,selectionEnd);
+				if(source){
+					source = await setUpUpperCase(source);
+					let shifted = reverseString(mapString(source));
+					shifted = await updateUpperCases(shifted);
+					document.activeElement.value = document.activeElement.value.replace(source,shifted);
+					document.activeElement.setSelectionRange(selectionStart,selectionEnd);
+					if(checkShiftSucceeded(source,shifted))shiftSucceeded();
+					else shiftFailed();					
+				} 
+			}
+			else if(document.activeElement.tagName == 'DIV' && $(document.activeElement).text()){
+				let source = $(document.activeElement).text();
+				let selectionStart = document.getSelection().focusOffset;
+				let selectionEnd = document.getSelection().anchorOffset;
+				
+				if(selectionStart < selectionEnd)
+					source = $(document.activeElement).text().slice(selectionStart,selectionEnd);
+				else if(selectionStart > selectionEnd)
+					source = $(document.activeElement).text().slice(selectionEnd,selectionStart);
+
+				if(source){
+					source = await setUpUpperCase(source);
+					let shifted = reverseString(mapString(source));
+					shifted = await updateUpperCases(shifted);
+					$(document.activeElement).text($(document.activeElement).text().replace(source,shifted));
+					
+					let range = document.createRange();
+					range.setStart(document.activeElement.childNodes[0],selectionStart<selectionEnd?selectionStart:selectionEnd)
+					range.setEnd(document.activeElement.childNodes[0],selectionEnd>selectionStart?selectionEnd:selectionStart)
+					window.getSelection().removeAllRanges();
+					window.getSelection().addRange(range);
+					
+					if(checkShiftSucceeded(source,shifted))shiftSucceeded();
+					else shiftFailed();	
+				} 
+			}
 		}
 })
 
